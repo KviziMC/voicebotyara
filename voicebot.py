@@ -59,11 +59,9 @@ def main():
     audio = capture_voice_input()
     text = convert_voice_to_text(audio)
 def main():
-    end_program = False
-    while not end_program:
-        audio = capture_voice_input()
-        text = convert_voice_to_text(audio)
-        end_program = process_voice_command(text)
+    audio = capture_voice_input()
+    text = convert_voice_to_text(audio)
+    return process_voice_command(text)
 if __name__ == '__main__':
     main()
 
