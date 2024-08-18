@@ -1,23 +1,20 @@
 import speech_recognition as sr
 import subprocess
 import webbrowser
-import pythonnn
+import gtts
+import os
 recognizer = sr.Recognizer()
 
-
 def capture_voice_input():
-    with sr.Microphone() as sourse:
+    with sr.Microphone() as source:
         print('Listening...')
-        audio = recognizer.listen(sourse)    
-        
+        audio = recognizer.listen(source)    
     return audio
-
 
 def convert_voice_to_text(audio):
     try:
-        text =recognizer.recognize_google(audio)
-        text = recognizer.recognize_google(audio, language = 'uk-UA')
-        print('You said:  '+ text)
+        text = recognizer.recognize_google(audio, language='uk-UA')
+        print('You said: ' + text)
     except sr.UnknownValueError:
         text = ''
         print('шо?')
@@ -29,41 +26,38 @@ def convert_voice_to_text(audio):
 def process_voice_command(text):
     if "привіт" in text.lower():
         print("Привіт! Як я можу Вам допомогти?")
+    elif "джарвіс" in text.lower():
+        result = pythonnn.generate (text)
+        myobj = gtts.gTTS(text=result, lang='uk', slow=False)
+        myobj.save("result.mp3")
+        os.system("result.mp3")
+        return result
     elif "прощавай" in text.lower():
         print("До побачення! Гарного дня!")
+        return True
     elif "як справи" in text.lower():
         print("Супер, а у Вас?")
-        return True
     elif "калькулятор" in text.lower():
-	    subprocess.call(['calc'])
-    elif 'джарвіс' in text.lower():
-        result = pythonnn.generate(text)
-        print(result)
-    elif 'людина-павук' in text.lower():
-        result = pythonnn.generate(text)
-        print(result)
-    elif 'кебаб' in text.lower():
-        result = pythonnn.generate(text)
-        print(result)
-    elif 'gojo' in text.lower():
-        result = pythonnn.generate(text)
-        print(result)
+        subprocess.call(['calc'])
     elif 'код' in text.lower():
         code = pythonnn.generate(text)
         with open('generated_code.py', 'w', encoding='utf-8') as file:
             file.write(code)
+    elif 'логіка' in text.lower():
+        webbrowser.open('https://learn.logikaschool.com/login')
+    elif 'youtube' in text.lower():
+        webbrowser.open(f'https://www.youtube.com/results?search_query={text.lower()[7:]}')
     else:
         print("Я Вас не розумію. Повторіть Ваш запит")
     return False
+
 def main():
-    audio = capture_voice_input()
-    text = convert_voice_to_text(audio)
-def main():
-    end_program = False
-    while not end_program:
+    while True:
         audio = capture_voice_input()
         text = convert_voice_to_text(audio)
-        end_program = process_voice_command(text)
+        if process_voice_command(text):
+            break
+
 if __name__ == '__main__':
     main()
 
@@ -511,7 +505,6 @@ if __name__ == '__main__':
 
 
 
-
     
     
     
@@ -2865,163 +2858,3 @@ if __name__ == '__main__':
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-#1
